@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}
+Dashboard
+{%endblock%}
+
+
+
+{% block content %}
+    <section>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <h6>{{form.user_type}}</h6>
+                    <h2>Welcome back, {{ user.username }}</h2>
+                    <p>Your DAATECH workspace -- overview of your trust, activity and pending actions.</p>
+                </div>
+                <div class="col">
+                    <button>Quick action <img src="" alt="icon"></button>
+                </div>
+            </div>
+        </div>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <p>Trust score</p>
+                    <p>690</p>
+                    <p>+12 this month</p>
+                </div>
+                <div class="col">
+                    <p>Active loans</p>
+                    <p>1</p>
+                    <p>On track</p>
+                </div>
+                <div class="col">
+                    <p>Repayment Rate</p>
+                    <p>98%</p>
+                    <p>Excellent</p>
+                </div>
+                <div class="col">
+                    <p>Connected Accounts</p>
+                    <p>3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+         <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <p><img src="" alt="icon">Trust Snapshot</p>
+                    <p>Trust Score</p>
+                    <p>690 <span>/850</span></p>
+                    <p>Excellent</p>
+
+                    <div class="container">
+                       <div class="row">
+                            <div class="col">
+                                <p>Repayment</p>
+                            </div>
+                            <div class="col">
+                                 <p>98%</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Cashflow</p>
+                            </div>
+                            <div class="col">
+                                 <p>stable</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p>Identity</p>
+                            </div>
+                            <div class="col">
+                                 <p>Verified</p>
+                            </div>
+                    </div> 
+                </div>
+                    </div>
+                <div class="col">
+                    <p><img src="" alt="icon">Recent Activity</p>
+                    <div class="row">
+                        <div class="col">
+                            <p>Loan application submitted</p>
+                            <p>Nthuzi Loans . MWK 1.2M . 12 months</p>
+                        </div>
+                        <div class="col">
+                            <p>1h ago</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Trust Score updated</p>
+                            <p>Repayment factor improved</p>
+                        </div>
+                        <div class="col">
+                            <p>1d ago</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Identity re-verified</p>
+                            <p>National ID match confirmed</p>
+                        </div>
+                        <div class="col">
+                            <p>3d ago</p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <section>
+        <h4>Modules</h4>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <p>Trust Score</p>
+                    <p>Your current Trust Score, factors and trend</p>
+                </div>
+                <div class="col">
+                    <p>Quick Actions</p>
+                    <p>Apply for a loan, share Trust passport, verify ID</p>
+                </div>
+                <div class="col">
+                    <p>Financial Health</p>
+                    <p>Snapshot of income, expenses and savings</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col">
+                    <p>Profile & KYC</p>
+                    <p>National ID, selfie, proof of address</p>
+                </div>
+                <div class="col">
+                    <p>Notifications</p>
+                    <p>Activity, lender offers, system updates</p>
+                </div>
+                <div class="col">
+                    <p>Documents</p>
+                    <p>Verified IDs, statements and certificates</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{%endblock%}
