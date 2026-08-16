@@ -11,7 +11,7 @@ Dashboard
         <div class="container text-center">
             <div class="row">
                 <div class="col">
-                    <h6>{{form.user_type}}</h6>
+                    <h6>{{request.user.profile.get_user_type_display}}</h6>
                     <h2>Welcome back, {{ user.username }}</h2>
                     <p>Your DAATECH workspace -- overview of your trust, activity and pending actions.</p>
                 </div>

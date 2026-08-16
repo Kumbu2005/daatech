@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Accounts
+{%endblock%}
+
+
+
+{% block content %}
+<h5>Accounts</h5>
+<h3>Accounts</h3>
+<p>Linked Bank Accounts, Mobile Money, Wallets, Consent Management, Connected Institutions</p>
+<div class="container text-center">
+    <div class="row">
+    <div class="col-4" id="accounts-div-btn">
+        <button class="account-btn" onclick="showContent('bank')">
+            <h6>Linked Bank Acounts</h6>
+            <p>Securely linked bank accounts</p>
+        </button>
+        <button class="account-btn" onclick="showContent('mobileMoney')">
+            <h6>Linked Mobile Money</h6>
+            <p>Airtel Money, TNM Mpamba and others</p>
+        </button>
+        <button class="account-btn" onclick="showContent('wallets')">
+            <h6>Connected Wallets</h6>
+            <p>Digital wallets you've authorised</p>
+        </button>
+        <button class="account-btn" onclick="showContent('Consent')">
+            <h6>Consent Management</h6>
+            <p>Control which Institutions can see your data</p>
+        </button>
+        <button class="account-btn" onclick="showContent('Institution')">
+            <h6>Connected Institutions</h6>
+            <p>Banks, MFIs and lenders with access</p>
+        </button>
+        <button class="account-btn" onclick="showContent('ShareCodes')">
+            <h6>Share Codes</h6>
+            <p>Single-use SMS/USSD codes to prove your trust status</p>
+        </button>
+    </div>
+
+    <div id="bank" class="content col-8 bank" style="display: block;">
+         <h3>Linked Bank Accounts</h3>
+        <p>securely linked bank accounts</p>
+        <hr>
+        <div>
+            <input type="search" placeholder="Search bank accounts">
+            <button>Filter</button>
+            <button>Export</button>
+            <button>Link new account</button>
+        </div>
+        <div>
+            <div style="background-color: lightgrey;">
+                <p>Institution</p>
+                <p>Account</p>
+                <p>Type</p>
+                <p>Status</p>
+                <p>Last sync</p>
+            </div>
+            <div>
+                <p>National Bank of malawi</p>
+                <p>....4821</p>
+                <p>Current</p>
+                <p>Connected</p>
+                <p>2h ago</p>
+            </div>
+        </div>
+    </div>
+    <div id="mobileMoney" class="content col-8">
+         <h3>Linked Mobile Money Accounts</h3>
+        <p>Airtel Money, TNM Mpamba and others</p>
+        <hr>
+        <div>
+            <input type="search" placeholder="Search Wallets">
+            <button>Filter</button>
+            <button>Export</button>
+            <button>Link Link Wallets</button>
+        </div>
+        <div>
+            <div style="background-color: lightgrey;">
+                <p>Provider</p>
+                <p>Number</p>
+                <p>30D Transanctions</p>
+                <p>Status</p>
+                <p>Last sync</p>
+            </div>
+            <div>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p>Connected</p>
+                <p>2h ago</p>
+            </div>
+        </div>
+    </div>
+    <div id="wallets" class="content col-8">
+        <h3>Wallets</h3>
+    </div>
+    <div id="Consent" class="content col-8">
+        <div class="row">
+            <div class="col-6">
+                <h6>Active permissions</h6>
+                <p>Institutions that can currently access your data</p>
+                <button>Grant access</button>
+                <div>
+                    No active consents. Institutions you <br>grant access to will appear here
+                </div>
+            </div>
+            <div class="col-6">
+                <h5>Your are in Control</h5>
+                <p>Every institution accessing your data <br> does so under an explicit consent you <br> granted. Revoke at any time — access <br> stops immediately.</p>
+                <p><span>Identity only</span>Name, National ID verification status, contact details.</p>
+                <p><span>Trust Score</span>Your current trust score and score band (no raw data).</p>
+                <p><span>Bank statements and balances</span>Linked account balances and transaction summaries</p>
+                <p><span>Repayment history</span>Loan repayment behaviour across connected lenders.</p>
+                <p><span>Full financial profile</span> Everything above, including documents and cashflow.</p>
+                <p>Every grant and revocation is written to your activity log for audit.</p>
+            </div>
+        </div>
+    </div>
+    <div id="Institution" class="content col-8">
+         <hr>
+        <div>
+            <input type="search" placeholder="Search connected Institutions...">
+            <button>Filter</button>
+            <button>Export</button>
+            <button>Link Link Wallets</button>
+        </div>
+        <div>
+            <div style="background-color: lightgrey;">
+                <p>REF</p>
+                <p>Item</p>
+                <p>Status</p>
+                <p>Last sync</p>
+            </div>
+            <div>
+                <p>REC-1042</p>
+                <p>Connected Institutions entry #1</p>
+                <p>Active</p>
+                <p>2h ago</p>
+            </div>
+        </div>
+    </div>
+    <div id="ShareCodes" class="content col-8">
+        <div>
+            <h5>Share by SMS or USSD</h5>
+            <p>Issue a single-use code and read it out to the institution. They text it to the DAATECH short <br>code and receive only your score band and verification status — never your name, National <br>ID or documents. The code expires automatically and can be used once.</p>
+            <button>True Score band only</button>
+            <button>15 minutes</button>
+            <button>Issue code</button>
+        </div>
+        <div>
+            <h5>Code history</h5>
+            <p>Every Issue and redemption is written to your audit trail</p>
+            <p>No codes issued yet.</p>
+            <button>Refresh</button>
+        </div>
+
+    </div>
+  </div>
+</div>
+<script src="{% static 'dashboard/script.js' %}"></script>
+{%endblock%}

@@ -1,0 +1,66 @@
+.account-btn{
+    border: 1px solid blue;
+    border-radius: 12px;
+    padding: 5px 10px;
+    text-align: start;
+    font-size: 12px;
+    background-color: white;
+    width: 250px;
+}
+#accounts-div-btn{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.account-btn-active{
+    border: 1px solid blue;
+    border-radius: 12px;
+    padding: 10px 20px;
+    text-align: start;
+    background-color: lightblue;
+    color: blue;
+}
+#bank div input, #mobileMoney div input{
+    border-radius: 6px;
+    border: solid 1px grey;
+    padding-left: 10px;
+}
+#bank div button, #mobileMoney div button{
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+    padding: 5px 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+#bank div div, #mobileMoney div div{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1.2fr;
+    justify-items: start;
+    gap: 10px;
+    white-space: nowrap;
+    
+}
+
+#Institution div input{
+    border-radius: 6px;
+    border: solid 1px grey;
+    padding-left: 10px;
+}
+#Institution div button{
+    border: none;
+    border-radius: 6px;
+    background-color: white;
+    padding: 5px 10px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+}
+#Institution div div{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    justify-items: start;
+    gap: 10px;
+    white-space: nowrap;
+    
+}
+.content{
+    display: none;
+}

@@ -1,18 +1,15 @@
-{% load static %}
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-     <link rel="stylesheet" type="text/css" href="{% static 'dashboard/style.css' %}">
-     <link rel="stylesheet" type="text/css" href="{% static 'dashboard/accounts.css' %}">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %}</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
-  <body>
-      <aside id="sidebar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sidebar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <aside id="sidebar">
         <ul>
             <li class="sidebar-first">
                 <span class="logo">Logo</span>
@@ -63,12 +60,12 @@
                         <path
                             d="M4 11H2v3h2zm5-4H7v7h2zm5-5v12h-2V2zm-2-1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM6 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1zm-5 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1z" />
                     </svg>
-                    <span class="try">Analytics</span>
+                    <span>Analytics</span>
                 </button>
                 </a>
             </li>
             <li>
-                <a href="{% url 'settings' %}"><button onclick="toggleActive()">
+                <a href="{% url 'analytics' %}"><button onclick="toggleActive()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-gear" viewBox="0 0 16 16">
                         <path
@@ -83,46 +80,21 @@
         </ul>
     </aside>
     <main>
-<div class="navbar" id="base-nav">
-      <div id="nav-logo"><img src="../../assets/logo.jpeg" alt="company logo" class="img-fluid"></div>
-      <div class="navbar" id="right-nav">
-        <button type="button" class="btn position-relative" id="notification-bell">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-          <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2M8 1.918l-.797.161A4 4 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4 4 0 0 0-3.203-3.92zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5 5 0 0 1 13 6c0 .88.32 4.2 1.22 6"/>
-        </svg>
-        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-          99+
-          <span class="visually-hidden">unread messages</span>
-        </span>
-        </button>
-        <div class="nav-profile-info">
-          <p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-            </svg>
-          </p>
-          <div style="display: flex; flex-direction: column;">
-            <p style="margin-bottom: 0;">{{user.first_name}} {{user.last_name}}</p>
-            <p style="font-size: 12px;">Individual</p>
-          </div>
+        <div class="container">
+            <h1>Yo!!</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero expedita quisquam corrupti atque officia
+            adipisci vero reiciendis! Sunt quos libero nihil cupiditate distinctio perferendis aut? Earum esse quo nobis
+            aliquam!</p>
         </div>
-        <button id="logout">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-          </svg>
-        </button>
-      </div>
-      
-    </div>
-      <div class="container mt-4" id="main-body">
-     {% block content %}
-    {% endblock %}
-    </div>
+        <div class="container">
+            <h1>Hello!!</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero expedita quisquam corrupti atque officia
+            adipisci vero reiciendis! Sunt quos libero nihil cupiditate distinctio perferendis aut? Earum esse quo nobis
+            aliquam!</p>
+        </div>
+
     </main>
-    
-    <script src="{% static 'dashboard/sidebar.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-  </body>
+    <script src="sidebar.js"></script>
+</body>
+
 </html>

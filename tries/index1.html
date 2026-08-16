@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content {
+    display: none;
+}
+    </style>
+</head>
+<body>
+    <div class="col-4">
+        <button onclick="showContent('bank')">
+            <h4>Linked Bank Acounts</h4>
+            <p>Securely linked bank accounts</p>
+        </button>
+        <button onclick="showContent('mobileMoney')">
+            <h4>Linked Mobile Money</h4>
+            <p>Airtel Money, TNM Mpamba and others</p>
+        </button>
+        <button onclick="showContent('wallets')">
+            <h4>Connected Wallets</h4>
+            <p>Digital wallets you've authorised</p>
+        </button>
+        <button onclick="showContent('Consent')">
+            <h4>Consent Management</h4>
+            <p>Control which Institutions can see your data</p>
+        </button>
+        <button onclick="showContent('Institution')">
+            <h4>Connected Institutions</h4>
+            <p>Banks, MFIs and lenders with access</p>
+        </button>
+        <button onclick="showContent('RevokeAccess')">
+            <h4>Revoke Access</h4>
+            <p>Instantly revoke any active permission</p>
+        </button>
+        <button onclick="showContent('ShareCodes')">
+            <h4>Share Codes</h4>
+            <p>Single-use SMS/USSD codes to prove your trust status</p>
+        </button>
+    </div>
+
+    <div id="bank" class="content col-8">
+         <h3>Linked Bank Accounts</h3>
+        <p>securely linked bank accounts</p>
+        <hr>
+        <div>
+            <input type="search">
+            <button>Filter</button>
+            <button>Export</button>
+            <button>Link new account</button>
+        </div>
+        <div>
+            <div>
+                <p>Institution</p>
+                <p>Account</p>
+                <p>Type</p>
+                <p>Status</p>
+                <p>Last sync</p>
+            </div>
+        </div>
+    </div>
+    <div id="mobileMoney" class="content col-8">
+        <h3>Linked Mobile Money Accounts</h3>
+    </div>
+    <div id="wallets" class="content col-8">
+        <h3>Wallets</h3>
+    </div>
+    <div id="Consent" class="content col-8">
+        <h3>Consent</h3>
+    </div>
+    <div id="Institution" class="content col-8">
+        <h3>Institution</h3>
+    </div>
+    <div id="RevokeAccess" class="content col-8">
+        <h3>Revoke Access</h3>
+    </div>
+    <div id="ShareCodes" class="content col-8">
+        <h3>Share Codes</h3>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

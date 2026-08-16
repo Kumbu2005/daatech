@@ -1,13 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class profile (models.Model):
-    USER_TYPE = [
-        ("","Select the one that best describes you"),
-        ("SMEs", "SMEs"),
-        ("Insurance-Company", "Insurance Company"),
-        ("Commercial-Bank", "Commercial Bank"),
-        ("Microfinance-Institution", "Microfinance Institution")
+class Profile (models.Model):
+    USER_TYPES = [
+        ("SME", "SMEs"),
+        ("Insurance", "Insurance Company"),
+        ("Commercial", "Commercial Bank"),
+        ("Microfinance", "Microfinance Institution")
     ]
 
-    
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_type = models.CharField(max_length=50, choices=USER_TYPES)
+
+    def __str__(self):
+        return self.user.username

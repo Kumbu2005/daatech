@@ -1,13 +1,20 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm
+from .models import Profile
 
 # Create your views here.
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
+
         if form.is_valid():
-            form.save()
-        return redirect("/home")
+            user = form.save()
+            Profile.objects.create(
+                user = user,
+                user_type = form.cleaned_data["user_type"]
+            )
+            return redirect("login")
+        print(form.errors)
     else:
         form = RegisterForm()
     return render(request, "register/register.html", {"form":form})
