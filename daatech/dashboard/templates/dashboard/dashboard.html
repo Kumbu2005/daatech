@@ -7,6 +7,15 @@ Dashboard
 
 
 {% block content %}
+    <div id="dashboardPopup" class="popup">
+        <div class="popup-content">
+            <button type="button" id="closeDashboardPopup">X</button>
+
+            <h2>Improve your trust score</h2>
+            <p>Provide more info to increase your trust score</p>
+            <a href="{% url 'Kyc' %}"><button>Go now </button></a>
+        </div>
+    </div>
     <section>
         <div class="container text-center">
             <div class="row">
@@ -148,4 +157,22 @@ Dashboard
             </div>
         </div>
     </section>
+    <script>
+    window.addEventListener('load', function() {
+
+        const dashboardPopup = document.getElementById("dashboardPopup");
+        const closeDashboardPopup = document.getElementById("closeDashboardPopup");
+
+        setTimeout(() => {
+            dashboardPopup.style.display = 'block';
+        }, 2000);
+
+        closeDashboardPopup.addEventListener('click', function() {
+            dashboardPopup.style.display = 'none';
+        });
+
+    });
+    </script>
+    
+
 {%endblock%}

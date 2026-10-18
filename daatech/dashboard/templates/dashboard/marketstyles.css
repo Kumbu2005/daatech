@@ -1,0 +1,91 @@
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  padding-bottom: 500px;
+}
+
+#market-main{
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 10px;
+}
+.market-right{
+    box-shadow: 0 4px 10px rgba(16, 15, 15, 0.1);
+    max-width: 100%;
+    padding: 20px;
+}
+.market-left{
+    box-shadow: 0 4px 10px rgba(16, 15, 15, 0.1);
+    width: 100%;
+    padding: 20px;
+}
+.market-categories{
+    display: flex;
+    gap: 30px; 
+    max-width: 100%;
+}
+.market-categories a{
+    text-decoration: none;
+}
+.market-categories a p{
+    
+    color: #818cf8;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: wrap;
+    padding: 10px 20px;
+    white-space: nowrap;
+    border-radius: 8px;
+}
+.amount-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.slider-group input[type="range"] {
+    width: 100%;
+}
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.repayment-box {
+    padding: 20px;
+    border-radius: 12px;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+}
+
+.repayment-box p {
+    margin: 0 0 10px;
+    color: #a1a1aa;
+    font-size: 14px;
+}
+
+.repayment-box h2 {
+    margin: 0 0 8px;
+    color: #818cf8;
+    font-size: 28px;
+}
+
+.repayment-box small {
+    color: #a1a1aa;
+    font-size: 12px;
+}
+.listing-card-tray{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+    gap: 30px;
+}
+.listing-card{
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+}
+.listing-card div{
+    display: flex;
+    justify-content: space-between;
+}

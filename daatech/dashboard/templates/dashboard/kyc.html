@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    KYC Verification
+{% endblock %}
+    
+{% block content %}
+<style>
+    .kyc-form-input{
+        display: block;
+    } 
+</style>
+    <div class="container mt-4">
+        <h1>KYC Verification</h1>
+        <form method="POST" enctype="multipart/form-data" id="kyc-form" class="form-group">
+
+                {% csrf_token %}
+                {{form.as_p}}
+<!-- 
+                <label>Item name</label>
+                {{ form.business_name }}
+
+                <label>Description</label>
+                {{ form.business_address }}
+
+                <label>Amount</label>
+                {{ form.national_id}}
+
+                <label>National ID Picture</label>
+                {{ form.national_id_pic}}
+
+                <label for="business_registration_document">Business Registration Document</label>
+                {{ form.business_registration_document }}
+                -->
+                <button type="submit">
+                    Apply 
+                </button> 
+
+            </form>
+    </div>
+{% endblock %}

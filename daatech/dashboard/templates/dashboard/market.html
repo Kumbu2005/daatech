@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Market place
@@ -6,180 +7,320 @@ Market place
 
 
 {% block content %}
+    <style>
+        .listing-card{
+            display: inline-block;
+            width: 100%;
+            border: none;
+            color: black;
+            position: relative;
+            border-radius: 12px;
+            background-color: aliceblue;
+        }
+        .listings-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+            gap: 20px;
+            color: var(--text-clr);
+       }
+       .delete-listing{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: red;
+            border: none;
+            background: none;
+        }
+        #request-loan-container div div h6{
+            color: blue;
+        }
+        .loan-request-span-number{
+            font-size: 2rem;
+        }
+        .badge-blue{
+            background-color: lightblue;
+            color: blue;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 10px;
+            border: 1px solid blue;
+            margin-right: 10px;
+        }
+        .badge-green{
+            background-color: lightgreen;
+            color: green;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 10px;
+            border: 1px solid green;
+        }
+        #user-status{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+    {%if request.user.profile.user_type == 'SME'%}
+    <div class="container text-center" id="request-loan-container">
+        <div class="row">
+            <div class="col" id="user-status">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
+                    </svg>
+                </div>
+                <div>
+                    <h6>COMPLETED</h6>
+                    <p>1.Business information</p>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col">Active Loans</div>
+                    <div class="col">0</div>
+                </div>
+                <button type="button" id="openPopup">Apply loan</button>
+            </div>
+        </div>
+    </div>
+    <div id="popup" class="popup" style="z-index:1000;">
+        <div class="popup-content">
 
-<section>
-    <h2>P2P Lend marketplace</h2>
-    <p>Lenders see verified reputation - not collateral</p>
+            <h2 id="nowhtml">Start a loan application</h2>
+            <div>
+                <img src="" alt="" class="">
+                <div style="display: flex; flex-direction: flex;">
+                    <p style="margin-bottom: 0; text-transform: uppercase;">{{ user.kyc.business_name }}</p>
+                    <p style="font-size: 12px; text-transform: uppercase;">{{user.profile.user_type|title}}</p>
+                </div>
+            </div>
+            <button type="button" id="closePopup">X</button> 
+            <form method="POST" enctype="multipart/form-data">
 
-    <div class="container text-center">
+                {% csrf_token %}
+
+                <label>Item name</label>
+                {{ form.title }}
+
+                <label>Description</label>
+                {{ form.description }}
+
+                <label>Amount</label>
+                {{ form.amount}}
+
+                <label>Category</label>
+                {{ form.category }}
+
+                <button type="submit" name="listing_submit">
+                    Apply 
+                </button>
+
+            </form>
+        </div>
+    </div>
+    {%endif%}
+
+    {% if not request.user.profile.user_type == 'SME' %}
+    <div class="container text-center" id="offer-loan">
         <div class="row">
             <div class="col">
-                <p>Your credit profile</p>
-                <p>690 / 850 <span>Good</span><span>Low risk</span></p>
-                <p>Based on 6 transactions . 2 months active</p>
+                <p>Offer a loan to SMEs and earn interest on your investment</p>
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col">
-                    <p>Available to borrow</p>
-                    </div>
-                    <div class="col">
-                    <p>K69,500</p>
-                    </div>
+                    <div class="col">Active Loans</div>
+                    <div class="col">0</div>
                 </div>
-                <div class="row">
-                   <div class="col">
-                    <p>Active Loans</p>
-                   </div>
-                   <div class="col">
-                        <p>0</p>
-                   </div>     
-                </div>
-                <button>Request a loan</button>
-                <button>Offer a lend</button>
+                <button type="button" id="openPopup2">Offer a loan</button>
             </div>
         </div>
     </div>
-    <p>AI loan recommendstions</p>
-    <p>Smart matches for lenders - borrowers ranked by repayment probability and trust </p>
-    <div class="row">
-        <div style="border: 1px solid grey;" class="col">
-            <span>Top match</span>
-            <p>Grace Phiri</p>
-            <p>Grace tailoring</p>
-            <p style="display: inline-block;">Financially Trusted</p>
-            <p style="display: inline-block;">Low risk</p>
-            <div>
-                <div style="display: inline-block;">
-                    <p>Suggested</p>
-                    <p>K80,000</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>Term</p>
-                    <p>60D</p>
-                </div>
-            </div>
-            <div>
-                <div style="display: inline-block;">
-                    <p>Interest</p>
-                    <p>8-10%</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>Repay prob</p>
-                    <p>90%</p>
-                </div>
-            </div>
-            <ul>
-                <li>92/100 repayment history</li>
-                <li>14 months on platform</li>
-                <li>Stable weekly income</li>
-            </ul>
-            <button>Send offer</button>
-        </div>
-        <div style="border: 1px solid grey;" class="col">
-            <span>Top match</span>
-            <p>Grace Phiri</p>
-            <p>Grace tailoring</p>
-            <p style="display: inline-block;">Financially Trusted</p>
-            <p style="display: inline-block;">Low risk</p>
-            <div>
-                <div style="display: inline-block;">
-                    <p>Suggested</p>
-                    <p>K80,000</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>Term</p>
-                    <p>60D</p>
-                </div>
-            </div>
-            <div>
-                <div style="display: inline-block;">
-                    <p>Interest</p>
-                    <p>8-10%</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>Repay prob</p>
-                    <p>90%</p>
-                </div>
-            </div>
-            <ul>
-                <li>92/100 repayment history</li>
-                <li>14 months on platform</li>
-                <li>Stable weekly income</li>
-            </ul>
-            <button>Send offer</button>
-        </div>
-        <div style="border: 1px solid grey;" class="col">
-            <span>Top match</span>
-            <p>Grace Phiri</p>
-            <p>Grace tailoring</p>
-            <p style="display: inline-block;">Financially Trusted</p>
-            <p style="display: inline-block;">Low risk</p>
-            <div>
-                <div style="display: inline-block;">
-                    <p>Suggested</p>
-                    <p>K80,000</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>Term</p>
-                    <p>60D</p>
-                </div>
-            </div>
-            <div>
-                <div style="display: inline-block;">
-                    <p>Interest</p>
-                    <p>8-10%</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>Repay prob</p>
-                    <p>90%</p>
-                </div>
-            </div>
-            <ul>
-                <li>92/100 repayment history</li>
-                <li>14 months on platform</li>
-                <li>Stable weekly income</li>
-            </ul>
-            <button>Send offer</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h5>Offers for you</h5>
-            <p>Filtered by your trust score and risk profile.</p>
-        </div>
-        <div class="col">
-            <button>All</button>
-            <button>Low</button>
-            <button>Medium</button>
-            <button>High</button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <img src="" alt="icon">
-            <div>
-                <p>Grace Phiri <span>Individual</span> <span>Financially Trusted</span><span>Low risk</span></p>
-                <p>Trust Index 723. Repayment probability 90%</p>
-            </div>
-        </div>
-        <div class="col">
-            <div style="display: inline-block;">
-                 <div style="display: inline-block;">
-                    <p>Amount</p>
-                    <p>Term</p>
-                    <p>Return</p>
-                </div>
-                <div style="display: inline-block;">
-                    <p>K40,000</p>
-                    <p>30d</p>
-                    <p>8% . K3,200</p>
-                </div>
-            </div>
-            <button>Apply</button>
-        </div>
-    </div>
-    
-</section>
+    <div id="popup2" class="popup" style="z-index:1000;">
+        <div class="popup-content">
 
+            <h2 id="nowhtml">Start a loan application</h2>
+            <button type="button" id="closePopup2">X</button> 
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <label>Item name</label>
+                {{ loan_form.title }}
+
+                <label>Description</label>
+                {{ loan_form.description }}
+
+                <label>Amount</label>
+                {{ loan_form.amount}}
+
+                <label>Category</label>
+                {{ loan_form.category }}
+
+                <button type="submit" name="loan_submit">
+                    Apply 
+                </button>
+
+            </form>
+        </div>
+    </div>
+    {%endif%}
+
+<!-- LISTED ITEMS -->
+
+<div class="market-items">
+
+    <h2>Your applications</h2>
+    <div class="listings-container">
+    {% for listing in listings %}
+
+        <div class="listing-card">
+            
+            <h3>{{ listing.title }}</h3>
+
+            <p>{{ listing.description }}</p>
+
+            <p>MKW{{ listing.amount }}</p>
+
+            <p>
+                Seller: {{listing.borrower}}
+            </p>
+
+            <form method="POST" action="{% url 'delete_listing' listing.id %}">
+                {% csrf_token %}
+                <button type="submit" class="delete-listing">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+    {% empty %}
+
+        <p>No items have been listed yet.</p>
+
+    {% endfor %}
+    </div>
+</div>
+
+<form method="GET" action="{% url 'market' %}">
+
+    <select name="category" onchange="this.form.submit()">
+        <option value="">All Categories</option>
+
+        <option value="electronics"
+            {% if category == 'electronics' %}selected{% endif %}>
+            Electronics
+        </option>
+
+        <option value="vehicles"
+            {% if category == 'vehicles' %}selected{% endif %}>
+            Vehicles
+        </option>
+
+        <option value="property"
+            {% if category == 'property' %}selected{% endif %}>
+            Property
+        </option>
+
+        <option value="equipment"
+            {% if category == 'equipment' %}selected{% endif %}>
+            Equipment
+        </option>
+
+        <option value="office"
+            {% if category == 'office' %}selected{% endif %}>
+            Office Supplies
+        </option>
+
+        <option value="other"
+            {% if category == 'other' %}selected{% endif %}>
+            Other
+        </option>
+    </select>
+
+</form>
+
+<div class="loan-offers">
+
+    <h2>available offers</h2>
+    <div class="listings-container">
+    {% for loan in loan_offers %}
+
+        <div class="listing-card">
+            
+            <h3>{{ loan.title }}</h3>
+
+            <p>{{ loan.description }}</p>
+
+            <p>MKW{{ loan.amount }}</p>
+
+            <p>
+                Seller: {{loan.lender}}
+            </p>
+
+            <form method="POST" action="{% url 'delete_loan' loan.id %}">
+                {% csrf_token %}
+                <button type="submit" class="delete-listing">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                </button>
+            </form>
+            
+        </div>
+
+    {% empty %}
+
+        <p>No items have been listed yet.</p>
+
+    {% endfor %}
+    </div>
+</div>
+
+<script>
+    const openPopup = document.getElementById("openPopup");
+    const openPopup2 = document.getElementById("openPopup2");
+
+    const closePopup = document.getElementById("closePopup");
+    const closePopup2 = document.getElementById("closePopup2");
+
+    const popup = document.getElementById("popup");
+    const popup2 = document.getElementById("popup2");
+
+
+    // SME - Apply for loan
+    if (openPopup) {
+        openPopup.addEventListener("click", function() {
+            popup.style.display = "flex";
+        });
+    }
+
+    // Institution - Offer a loan
+    if (openPopup2) {
+        openPopup2.addEventListener("click", function() {
+            popup2.style.display = "flex";
+        });
+    }
+
+
+    // Close SME popup
+    if (closePopup) {
+        closePopup.addEventListener("click", function() {
+            popup.style.display = "none";
+        });
+    }
+
+    // Close institution popup
+    if (closePopup2) {
+        closePopup2.addEventListener("click", function() {
+            popup2.style.display = "none";
+        });
+    }
+</script>
 {%endblock%}
+<script src="{% static 'dashboard/sidebar.js' %}"></script>

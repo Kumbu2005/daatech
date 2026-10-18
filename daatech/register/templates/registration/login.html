@@ -1,16 +1,41 @@
-{% extends "base.html" %}
-
-{% block title %}
-Login Here
-{%endblock%}
+<!doctype html>
 
 {% load crispy_forms_tags %}
 
-{% block content %}
-    <form method="post" class="form-group">
-        {% csrf_token %}
-        {{form | crispy}}
-        <p>Don't have an account? Create one <a href="/register/">here</a></p>
-        <button type="submit" class="btn btn-success">Login</button>
-    </form>
-{%endblock%}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        #nav-login{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f9fa;
+        }
+        #nav-login img{
+            height: 40px;
+        }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" id="nav-login">
+        <a href="{% url 'index' %}">
+            <img src="../../../assets/logo.jpeg" alt="logo" class="img-fluid">
+        </a>
+        <p>© 2026 Daatech.</p>
+    </nav>
+    <div class="container mt-4">
+        <form method="post" class="form-group">
+            {% csrf_token %}
+            {{form | crispy}}
+            <p>Don't have an account? Create one <a href="{% url 'register' %}">here</a></p>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

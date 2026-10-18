@@ -2,7 +2,7 @@
     --base-clr: #11121a;
     ---line-clr: #42434a;
     ---hover-clr: #222533;
-    ---text-clr: #e6e6ef;
+    ---text-clr: #020213;
     --accent-clr: #5e63ff;
     --secondary-text-clr: #b0b3c1;
 }
@@ -11,6 +11,7 @@ body{
     grid-template-columns: auto 1fr;
     font-size: 12px;
 }
+
 #logout{
     border: none;
     background-color: transparent;

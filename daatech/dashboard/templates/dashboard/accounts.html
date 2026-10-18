@@ -11,6 +11,23 @@ Accounts
 <h5>Accounts</h5>
 <h3>Accounts</h3>
 <p>Linked Bank Accounts, Mobile Money, Wallets, Consent Management, Connected Institutions</p>
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+
+        <button type="button" id="closePopup">X</button>
+
+        <form method="POST" action="{% url 'accounts' %}">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit">Link Account</button>
+        </form>
+
+    </div>
+</div>
+
 <div class="container text-center">
     <div class="row">
     <div class="col-4" id="accounts-div-btn">
@@ -48,7 +65,7 @@ Accounts
             <input type="search" placeholder="Search bank accounts">
             <button>Filter</button>
             <button>Export</button>
-            <button>Link new account</button>
+            <button type="button" id="openPopup">Link New Account</button>
         </div>
         <div>
             <div style="background-color: lightgrey;">
@@ -58,13 +75,33 @@ Accounts
                 <p>Status</p>
                 <p>Last sync</p>
             </div>
-            <div>
-                <p>National Bank of malawi</p>
-                <p>....4821</p>
-                <p>Current</p>
-                <p>Connected</p>
-                <p>2h ago</p>
-            </div>
+            {% for account in user_accounts %}
+
+                <div>
+                    <p>{{ account.bank }}</p>
+                    <p>{{ account.account_number }}</p>
+                    <p>{{ account.account_type }}</p>
+                    {% if form.account_number.errors %}
+                        <p class="error">
+                            {{ form.account_number.errors.0 }}
+                        </p>
+                    {% else %}
+                        <p>Connected</p>
+                    {% endif %}
+                    <p>2h ago</p>
+                </div>
+
+                <form method="POST" action="{% url 'unlink_account' account.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Unlink</button>
+                </form>
+
+            {% empty %}
+
+                <p>No linked accounts yet.</p>
+
+            {% endfor %}
+            
         </div>
     </div>
     <div id="mobileMoney" class="content col-8">
@@ -160,5 +197,18 @@ Accounts
     </div>
   </div>
 </div>
+<script>
+    const openPopup = document.getElementById("openPopup");
+    const closePopup = document.getElementById("closePopup");
+    const popup = document.getElementById("popup");
+
+    openPopup.addEventListener("click", function() {
+        popup.style.display = "flex";
+    });
+
+    closePopup.addEventListener("click", function() {
+        popup.style.display = "none";
+    });
+</script>
 <script src="{% static 'dashboard/script.js' %}"></script>
 {%endblock%}
